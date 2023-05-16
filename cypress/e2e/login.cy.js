@@ -1,11 +1,15 @@
-/// <reference types="cypress"/>
-context('funcionalidae login', () => {
+/// <reference types ="cypress" />
+describe('Funcionalidade login', () => {
+    beforeEach(() => {
+        cy.visit('minha-conta')
+    });
+    
     afterEach(() => {
-        cy.screenshot
+        cy.screenshot ()
     });
     
 });
-    it ('deve fazer login com sucesso', () => {
+    it('deve fazer login com sucesso', () => {
         cy.visit ('http://lojaebac.ebaconline.art.br/minha-conta/')
         cy.get('#username').type ('fabiovideomaker@hotmail.com')
         cy.get('#password').type ('330919')
@@ -21,8 +25,15 @@ context('funcionalidae login', () => {
         cy.get('.woocommerce-form > .button').click()
         cy.get('.woocommerce-error > li').should ('contain' , 'não está cadastrado neste site')
         
-        
-    })
+         })
+         it('Deve fazer login com sucesso-Usando arquivos de dados', () => {
+            cy.visit ('http://lojaebac.ebaconline.art.br/minha-conta/')
+        cy.get('#username').type ('ebacteste.com')
+        cy.get('#password').type ('teste@teste.com')
+        cy.get('.woocommerce-form > .button').click()
+        cy.get('.woocommerce-error > li').should ('contain' , 'não está cadastrado neste site')
+            
+         });
     it('Deve inserir uma mensagem de erro ao inserir senha invalida', () => {
         cy.visit ('http://lojaebac.ebaconline.art.br/minha-conta/')
         cy.get('#username').type ('aluno_ebac@teste.com')

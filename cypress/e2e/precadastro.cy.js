@@ -1,9 +1,21 @@
-/// <reference types="cypress"/>
+/// <reference types ="cypress" />
 var faker = require ('faker')
-describe('pré-cadastro', () => {
+describe('funcionalidade pré cadastro', () => {
+    beforeEach(() => {
+        cy.visit('minha-conta');
+      });
+    
+    afterEach(() => {
+        cy.screenshot ()
+    });
+    
 
 });
 it('deve completarfazer cadastro com sucesso', () => {
+    let nomefaker = faker.name.firstName ()
+    let sobrenomefaker = faker.name.lastName ()
+    let emailFaker = faker.internet.email(nomefaker)
+    
     cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
     cy.get('#reg_email').type (faker.internet.email())
     cy.get('#reg_password').type('330919')
